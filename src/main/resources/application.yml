@@ -1,0 +1,22 @@
+server:
+  port: 8085
+spring:
+  application:
+    name: weather-service
+  servlet:
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
+  jackson:
+    time-zone: GMT+8
+feign:
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+    response:
+      enabled: true
+QWeatherAPI:
+  key: cf369faed5cf467fba49872b5d044dcd
+  weatherUrl: https://devapi.qweather.com
+  addressUrl: https://geoapi.qweather.com/
