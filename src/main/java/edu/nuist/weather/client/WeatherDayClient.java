@@ -9,6 +9,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface WeatherDayClient {
 
     /**
+     * 未来3天预报
+     * @param location 需要查询地区的LocationID
+     * @param key 和风天气用户认证key
+     * @return 进行Gzip压缩后的JSON格式数据
+     */
+    @GetMapping(value = "/v7/weather/3d")
+    ResponseEntity<byte[]> dailyForecastForThreeDays(@RequestParam("location") String location,
+                                                     @RequestParam(value = "key") String key);
+
+    /**
      * 未来7天预报
      * @param location 需要查询地区的LocationID
      * @param key 和风天气用户认证key

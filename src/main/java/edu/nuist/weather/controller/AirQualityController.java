@@ -1,11 +1,10 @@
 package edu.nuist.weather.controller;
 
 import edu.nuist.weather.annotation.LogAnnotation;
-import edu.nuist.weather.service.AddressService;
+import edu.nuist.weather.service.AirQualityService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,19 +12,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-@RequestMapping("/address")
-public class AddressController {
+@RequestMapping("/air")
+public class AirQualityController {
+
+    @Autowired
+    private AirQualityService airQualityService;
 
     @Value("${QWeatherAPI.key}")
     private String key;
 
-    @Autowired
-    private AddressService addressService;
-
-    @LogAnnotation(operator = "地址转坐标和地区编码")
-    @GetMapping("addressToCoordinate")
-    public ResponseEntity<byte[]> addressToCoordinateAndAddressId(@RequestParam("address") String address) {
-        return addressService.getGeocoderByAddress(address, key);
+    @LogAnnotation(operator = "实时空气质量")
+    @GetMapping("now")
+    public Object nowAirQuality(@RequestParam("location") String location) {
+        return airQualityService.airQualityNow(location, key, true);
     }
 
 }

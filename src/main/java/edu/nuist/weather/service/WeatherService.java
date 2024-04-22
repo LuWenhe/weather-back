@@ -15,8 +15,16 @@ public class WeatherService {
     @Autowired
     private WeatherDayClient weatherDayClient;
 
+    public ResponseEntity<byte[]> nowWeather(String location, String key) {
+        return weatherHourClient.nowWeather(location, key);
+    }
+
     public ResponseEntity<byte[]> hourlyForecastForTwentyFourHours(String location, String key) {
         return weatherHourClient.hourlyForecastForTwentyFourHours(location, key);
+    }
+
+    public ResponseEntity<byte[]> dailyForecastForThreeDays(String location, String key) {
+        return weatherDayClient.dailyForecastForThreeDays(location, key);
     }
 
     public ResponseEntity<byte[]> dailyForecastForSevenDays(String location, String key) {

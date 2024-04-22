@@ -21,10 +21,22 @@ public class WeatherController {
     @Value("${QWeatherAPI.key}")
     private String key;
 
+    @LogAnnotation(operator = "实时预报")
+    @GetMapping("now")
+    public Object nowWeather(@RequestParam("location") String location) {
+        return weatherService.nowWeather(location, key);
+    }
+
     @LogAnnotation(operator = "未来24小时逐小时预报")
     @GetMapping("24h")
     public Object hourlyForecastForTwentyFourHours(@RequestParam("location") String location) {
         return weatherService.hourlyForecastForTwentyFourHours(location, key);
+    }
+
+    @LogAnnotation(operator = "未来3天预报")
+    @GetMapping("3d")
+    public Object dailyForecastForThreeDays(@RequestParam("location") String location) {
+        return weatherService.dailyForecastForThreeDays(location, key);
     }
 
     @LogAnnotation(operator = "未来7天预报")
