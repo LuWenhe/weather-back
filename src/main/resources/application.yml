@@ -17,6 +17,7 @@ feign:
     response:
       enabled: true
 QWeatherAPI:
-  key: cf369faed5cf467fba49872b5d044dcd
+#  key: cf369faed5cf467fba49872b5d044dcd
+  key: 3f78c58379f64d0fb2140a7bf84aa49f
   weatherUrl: https://devapi.qweather.com
   addressUrl: https://geoapi.qweather.com/
